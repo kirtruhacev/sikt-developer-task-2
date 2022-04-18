@@ -297,6 +297,12 @@ public class Calculator {
         if(size > 7) {
             throw new IllegalArgumentException("Too many values!");
         }
+        if(size == 6) {
+            throw new IllegalArgumentException("Expression has to consist of 3, 5 or 7 inputs!");
+        }
+        if(size == 4) {
+            throw new IllegalArgumentException("Expression has to consist of 3, 5 or 7 inputs!");
+        }
         if(onlyDigits(this.values, values.length()) && list.stream().filter(v -> isMathOperator(v) == true).findAny().isEmpty()){
             throw new IllegalArgumentException("Input is invalid, should contain math operators!");
         }
@@ -306,6 +312,7 @@ public class Calculator {
         if(isMathOperator(list.get(1))) {
             throw new IllegalArgumentException("Second position can not be math operator!");
         }
+        
 
         
 

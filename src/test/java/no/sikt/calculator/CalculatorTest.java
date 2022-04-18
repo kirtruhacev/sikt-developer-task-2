@@ -120,7 +120,7 @@ public class CalculatorTest {
 
     @Test
     void throwExceptionNumbersOnlyInput() {
-    var expression = "1 2 3 4 5 7";
+    var expression = "1 2 3 4 5";
     Exception exception = assertThrows(IllegalArgumentException.class, () -> {
         Calculator cal = new Calculator(expression);
         cal.getResult();
@@ -210,6 +210,30 @@ public class CalculatorTest {
         cal.getResult();
     });
     String expectedMessage = "Every number/operator should be provided with empty field after it!";
+    String actualMessage = exception.getMessage();
+    assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    void throwExceptionNumberOfInputs1() {
+    var expression = "1 2 3 /";
+    Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+        Calculator cal = new Calculator(expression);
+        cal.getResult();
+    });
+    String expectedMessage = "Expression has to consist of 3, 5 or 7 inputs!";
+    String actualMessage = exception.getMessage();
+    assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    void throwExceptionNumberOfInputs2() {
+    var expression = "1 2 3 / 5 *";
+    Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+        Calculator cal = new Calculator(expression);
+        cal.getResult();
+    });
+    String expectedMessage = "Expression has to consist of 3, 5 or 7 inputs!";
     String actualMessage = exception.getMessage();
     assertTrue(actualMessage.contains(expectedMessage));
     }
